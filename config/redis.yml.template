@@ -1,0 +1,9 @@
+distributed:
+  urls:    
+  -  redis://10.10.10.175:6379
+  -  redis://10.10.10.176:6379
+  password: tanxredispassword
+
+session:
+  host: 127.0.0.1
+  port: 6379

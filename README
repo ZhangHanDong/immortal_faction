@@ -1,0 +1,12 @@
+# To Run Server:
+
+$ ruby config/routes.rb -sv -e development
+
+# To Run Console
+
+$ ruby scripts/console.rb
+
+# deploy
+
+$ cap staging deploy
+$ cap staging deploy:start
