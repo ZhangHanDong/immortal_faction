@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem "active_support", "~> 3.0.0"
+
 gem "RubyInline", "~> 3.11.3"
 gem "hiredis", "~> 0.4.5"
 

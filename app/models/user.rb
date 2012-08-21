@@ -1,5 +1,9 @@
 class User < RedisRecord::Base
  
+  
+  def generate_token
+    Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{Time.now.to_s}"
+  end
 
   def uniq_name
   	name = generate_user_name

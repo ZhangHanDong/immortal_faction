@@ -9,5 +9,6 @@ Bundler.require(:default, :app)
 
 require 'fileutils'
 require 'cgi'
+require 'active_support'
 
 require 'application'
