@@ -1,0 +1,12 @@
+import "ErrorGPB.proto";
+
+message RegAttrRequest
+{
+	required string username = 1;
+	required int32 attribute = 2;
+}
+
+message RegAttrResponse
+{
+    optional ErrorGPB error = 1;
+}

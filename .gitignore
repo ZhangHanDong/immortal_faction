@@ -1,3 +1,4 @@
 Gemfile.lock
 logs/*.log
 config/redis.yml
+.DS_Store

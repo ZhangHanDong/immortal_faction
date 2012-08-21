@@ -1,0 +1,37 @@
+import "ErrorGPB.proto";
+
+//SignUp
+message SignUpRequest
+{
+    required string macAddress = 1;
+}
+
+message SignUpResponse
+{
+    optional ErrorGPB error = 1;
+    required string username = 2;
+}
+
+message PasswordRequest
+{
+    required string password = 1;
+}
+
+message PasswordResponse
+{
+    optional ErrorGPB error = 1;
+}
+
+//login
+message LoginRequest
+{
+	required string username = 1;
+	required string password = 2;
+}
+
+message LoginResponse
+{
+    optional ErrorGPB error = 1;
+}
+
+
