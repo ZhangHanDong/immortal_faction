@@ -1,13 +1,11 @@
 $: << "../../app" << "./app" << "../../lib" << "./lib"
 
-# models
+# # models
 require 'models/redis_record'
 require 'models/user'
 
-# controllers
 
-
-# lib
+# # lib
 require 'evented_distributed'
 require 'redis_distributed'
 

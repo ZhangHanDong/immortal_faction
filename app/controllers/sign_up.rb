@@ -1,13 +1,12 @@
 $: << "../../config" << "./config"
-
 require 'boot'
 
-class Routes < Goliath::API
+class SignUp < ::Goliath::API
 
-  # routes
-  
   def response(env)
-    [400, {}, "no route!"]
+
+    [200, {}, User.new.uniq_name]
   end
+
 
 end
