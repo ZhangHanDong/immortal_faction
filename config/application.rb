@@ -8,6 +8,8 @@ require 'models/user'
 
 
 # lib
+require 'evented_distributed'
+require 'redis_distributed'
 
 # constant define
 
