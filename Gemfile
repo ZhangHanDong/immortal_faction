@@ -8,6 +8,7 @@ gem "hiredis", "~> 0.4.5"
 gem "em-synchrony"
 gem "em-redis"
 gem "redis", "~> 3.0.1", :require => ["redis/connection/synchrony", "redis"]
+gem "redis-namespace", "~> 1.2.1"
 
 
 gem "ruby_protobuf", "~> 0.4.11"

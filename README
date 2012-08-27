@@ -1,6 +1,6 @@
 # To Run Server:
 
-$ ruby config/routes.rb -sv -e development
+$ ruby app/controllers/login.rb -sv -e development
 
 # To Run Console
 

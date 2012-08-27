@@ -4,7 +4,7 @@ require 'irb'
 require 'irb/completion'
 
 $: << "../../config" << "./config"
-require 'routes'
+require 'boot'
 
 puts "Loading IF environment ... "
 
