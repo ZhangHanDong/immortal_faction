@@ -2,19 +2,13 @@ require 'digest/sha1'
 
 class User < RedisRecord::Base
  
-  def nick_name
-    get("accounts:nick:#{current_user_count}") || ""
-  end
-
-  def generate_token
-    Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{Time.now.to_s}"
-  end
+  #sign_up
 
   def new_user_id
     incrby("accounts:count", 1)
   end
 
-  def current_user_count
+  def current_user_counts
     get("accounts:count")
   end
 
@@ -27,11 +21,32 @@ class User < RedisRecord::Base
   end
 
   def device_info_save(device_type, device_code)
-    hset("accounts:devices", "#{current_user_count}", "#{device_type}:#{device_code}")
+    lpush("accounts:devices:#{current_user_count}", "#{device_type}:#{device_code}")
   end
 
+  #login
+
+  
+
+  def current_user
+    
+  end
+
+  #profile
+
+  def nick_name
+    get("accounts:nick:#{current_user_count}") || ""
+  end
+
+  # public
+  def generate_token
+    Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{Time.now.to_s}"
+  end
+
+  # query
+
   def device_infos
-    hgetall "accounts:devices"
+    lrange "accounts:devices:#{current_user}"
   end
 
   def user_lists

@@ -1,5 +1,5 @@
 message ErrorGPB
 {
-    required string errorText = 1;
-    required int32  errorCode = 2;
+    required string error_text = 1;
+    required int32  error_code = 2;
 }

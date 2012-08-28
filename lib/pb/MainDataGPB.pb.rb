@@ -70,7 +70,7 @@ require 'protobuf/message/enum'
 require 'protobuf/message/service'
 require 'protobuf/message/extend'
 
-require 'ErrorGPB.pb'
+require 'pb/ErrorGPB.pb'
 class MainGataGPB < ::Protobuf::Message
   defined_in __FILE__
   required :string, :city_name, 1

@@ -6,16 +6,29 @@ class SignUp < ::Goliath::API
 
   def response(env)
   	request = Rack::Request.new(env)
-    device_type, device_code = request.params['device_type'], request.params['device_code']
-    #TODO
-    # user = User.new
-    # user.new_user_id
-    # user.save
-    # user.device_info_save(device_type, device_code)
-    # env.logger.info "device_code -> #{device_code}"
-    # env.logger.info user.user_lists.inspect
-    # env.logger.info user.device_infos.inspect
-    [200, {}, user.uniq_name ]
+    @sign_up_request = SignUpRequest.new.parse_from(env["rack.input"])
+
+    @response_rusult = response_build
+
+
+    [200, {'Content-Type' => 'application/octet-stream'}, @response_rusult ]
+  end
+
+
+  def response_build
+    user = User.new
+    user.new_user_id
+
+    @sign_up_response = SignUpResponse.new
+    @sign_up_response.username = user.uniq_name
+
+    @error_gpb = ErrorGPB.new
+    @error_gpb.error_text = "none"
+    @error_gpb.error_code = 0
+
+    @sign_up_response.error = @error_gpb
+
+    return @sign_up_response.serialize_to_string
   end
 
 

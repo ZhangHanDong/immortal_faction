@@ -5,7 +5,8 @@
 # message RegAttrRequest
 # {
 # 	required string username = 1;
-# 	required int32 attribute = 2;
+#     required string token = 2;
+# 	required int32 attribute = 3;
 # }
 # 
 # message RegAttrResponse
@@ -18,11 +19,12 @@ require 'protobuf/message/enum'
 require 'protobuf/message/service'
 require 'protobuf/message/extend'
 
-require 'ErrorGPB.pb'
+require 'pb/ErrorGPB.pb'
 class RegAttrRequest < ::Protobuf::Message
   defined_in __FILE__
   required :string, :username, 1
-  required :int32, :attribute, 2
+  required :string, :token, 2
+  required :int32, :attribute, 3
 end
 class RegAttrResponse < ::Protobuf::Message
   defined_in __FILE__

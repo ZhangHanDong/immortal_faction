@@ -2,8 +2,8 @@
 ### <proto file: ErrorGPB.proto>
 # message ErrorGPB
 # {
-#     required string errorText = 1;
-#     required int32  errorCode = 2;
+#     required string error_text = 1;
+#     required int32  error_code = 2;
 # }
 
 require 'protobuf/message/message'
@@ -13,6 +13,6 @@ require 'protobuf/message/extend'
 
 class ErrorGPB < ::Protobuf::Message
   defined_in __FILE__
-  required :string, :errorText, 1
-  required :int32, :errorCode, 2
+  required :string, :error_text, 1
+  required :int32, :error_code, 2
 end

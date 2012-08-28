@@ -3,7 +3,8 @@ import "ErrorGPB.proto";
 //SignUp
 message SignUpRequest
 {
-    required string macAddress = 1;
+    required string mac_address = 1;
+    required string divice_type = 2;
 }
 
 message SignUpResponse
@@ -20,6 +21,7 @@ message PasswordRequest
 message PasswordResponse
 {
     optional ErrorGPB error = 1;
+    required string token = 2;
 }
 
 //login
@@ -32,6 +34,7 @@ message LoginRequest
 message LoginResponse
 {
     optional ErrorGPB error = 1;
+    required string token = 2;
 }
 
 
