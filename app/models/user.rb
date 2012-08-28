@@ -7,7 +7,7 @@ class User < RedisRecord::Base
   def build
     user_id = incrby("accounts:count", 1)
     username = Bijective.bijective_encode user_id
-    save([['user_id', user_id], ['username', username]])
+    save(username, ['user_id', user_id])
     return username
   end
 
@@ -16,9 +16,9 @@ class User < RedisRecord::Base
   end
 
   # attrs = [[k, v], [k1, v1]]
-  def save(attrs)
+  def save(username, attrs)
     attrs.each do |attr|
-      hmset("accounts:user_lists", "#{attr[0]}", "#{attr[1]}")
+      hmset("accounts:user_lists:#{username}", "#{attr[0]}", "#{attr[1]}")
     end
   end
 
@@ -27,23 +27,21 @@ class User < RedisRecord::Base
     lpush("accounts:devices:#{current_user_count}", "#{device_type}:#{device_code}")
   end
 
-  #login
-
-  
-
-  def current_user
-    
-  end
-
-  #profile
-
-
   # public
   def generate_token
     Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{Time.now.to_s}"
   end
 
   # query
+
+  def current_user?(params_username, params_token)
+    token = hmget("accounts:user_lists:#{params_username}", "token")
+    if params_token == token
+      return true
+    else
+      return false
+    end
+  end
 
   def device_infos
     lrange "accounts:devices:#{current_user}"
@@ -53,13 +51,9 @@ class User < RedisRecord::Base
     hgetall("accounts:user_lists")
   end
 
-  def login?(name, pwd)
-    #TODO
-  end
-
   protected
 
-    def generate_password(pwd)
+    def self.generate_password(pwd)
       Digest::SHA1.hexdigest "#{pwd}#{SALT}"
     end
 end

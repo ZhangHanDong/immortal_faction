@@ -10,6 +10,14 @@ module RedisRecord
       If::RedisDistributed.node.hmset *args
     end
 
+    def hmget(*args)
+      If::RedisDistributed.node.hmget *args
+    end
+
+    def hgetall(*args)
+      If::RedisDistributed.node.hgetall *args
+    end
+
     def incrby(*args)
       If::RedisDistributed.node.incrby *args
     end
@@ -22,8 +30,12 @@ module RedisRecord
       If::RedisDistributed.node.get *args
     end
 
-    def hgetall(*args)
-      If::RedisDistributed.node.hgetall *args
+    def lpush(*args)
+      If::RedisDistributed.node.lpush *args
+    end
+
+    def lrange(*args)
+      If::RedisDistributed.node.lrange *args
     end
   end
 
