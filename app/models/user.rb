@@ -4,22 +4,25 @@ class User < RedisRecord::Base
  
   #sign_up
 
-  def new_user_id
-    incrby("accounts:count", 1)
+  def build
+    user_id = incrby("accounts:count", 1)
+    username = Bijective.bijective_encode user_id
+    save([['user_id', user_id], ['username', username]])
+    return username
   end
 
   def current_user_counts
     get("accounts:count")
   end
 
-  def uniq_name
-    Bijective.bijective_encode current_user_count.to_i
+  # attrs = [[k, v], [k1, v1]]
+  def save(attrs)
+    attrs.each do |attr|
+      hmset("accounts:user_lists", "#{attr[0]}", "#{attr[1]}")
+    end
   end
 
-  def save(pwd)
-    hmset("accounts:user_lists", "#{current_user_count}", 'name', "#{uniq_name}", 'nick', "#{nick_name}", 'pwd', "#{generate_password(pwd)}")
-  end
-
+  # list
   def device_info_save(device_type, device_code)
     lpush("accounts:devices:#{current_user_count}", "#{device_type}:#{device_code}")
   end
@@ -34,9 +37,6 @@ class User < RedisRecord::Base
 
   #profile
 
-  def nick_name
-    get("accounts:nick:#{current_user_count}") || ""
-  end
 
   # public
   def generate_token
