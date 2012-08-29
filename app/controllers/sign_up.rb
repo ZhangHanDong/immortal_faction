@@ -6,20 +6,19 @@ class SignUp < ::Goliath::API
   use Goliath::Rack::Validation::RequestMethod, %w(POST GET)
 
   def response(env)
-    user = User.new
 
     if sign_up? env
-      username = user.build
       @sign_up_request = SignUpRequest.new.parse_from(env["rack.input"])
-      user.device_info_save(@sign_up_request.mac_address, @sign_up_request.device_type)
+      username = User.create
+      Device.update(:device_type => @sign_up_request.device_type, :device_code => @sign_up_request.mac_address)
       @response_rusult = sign_up_response_build username
     elsif password_info? env
       @pwd_request = PasswordRequest.new.parse_from(env["rack.input"])
       username = @pwd_request.username
       password = @pwd_request.password
-      sha_password = User.generate_password password
+      user = User.find(username)
       token = user.generate_token
-      user.save(username, [['password', sha_password], ['token', token]])
+      user.update(username, :password => password, :token => token)
       @response_rusult = pwd_response_build token
     end
 

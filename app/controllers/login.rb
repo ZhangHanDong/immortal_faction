@@ -11,17 +11,11 @@ class Login < ::Goliath::API
     username = @login_request.username
     password = @login_request.password
 
-    sha_password = If::RedisDistributed.node.hmget("accounts:user_lists:#{username}", "password")
-
-    if sha_password
-      if sha_password == User.generate_password(password)
-      	token = If::RedisDistributed.node.hmget("accounts:user_lists:#{username}", "token")
-        @response_rusult = login_response_build(token, error_gpb_info)
-      else
-        @response_rusult = login_response_build("", error_gpb_info("password invalid", 401))
-      end
+    user = User.find username
+    if user.auth_login(password)
+      @response_rusult = login_response_build(user.token, error_gpb_info)
     else
-      @response_rusult = login_response_build("", error_gpb_info("", 401))
+      @response_rusult = login_response_build("", error_gpb_info("password invalid", 401))
     end
 
     [200, {'Content-Type' => 'application/octet-stream'}, @response_rusult ]
