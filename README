@@ -1,16 +1,23 @@
 # To Run Server:
 
-$ ruby app/controllers/login.rb -sv -e development
+  $ ruby app/controllers/sign_up.rb -sv -e development -p 9000
+  $ ruby app/controllers/login.rb -sv -e development  -p 9001
 
 # To Run Console
 
-$ ruby scripts/console.rb
+  $ ruby scripts/console.rb
 
 # deploy
 
-$ cap staging deploy
-$ cap staging deploy:start
+  $ cap staging deploy
+  $ cap staging deploy:start
 
 #complie pb
 
-# rprotoc xxx
+  $ rprotoc xxx
+
+#启动redis命令
+
+  $ redis-server /usr/local/etc/redis.conf
+  $ redis-server /usr/local/etc/redis_6377.conf
+  $ redis-server /usr/local/etc/redis_6378.conf
