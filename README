@@ -10,3 +10,7 @@ $ ruby scripts/console.rb
 
 $ cap staging deploy
 $ cap staging deploy:start
+
+#complie pb
+
+# rprotoc xxx

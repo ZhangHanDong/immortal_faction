@@ -15,7 +15,8 @@ message SignUpResponse
 
 message PasswordRequest
 {
-    required string password = 1;
+    required string username = 1;
+    required string password = 2;
 }
 
 message PasswordResponse
