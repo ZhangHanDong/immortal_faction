@@ -11,16 +11,16 @@ class User < RedisRecord::Base
     return @username
   end
 
-  #just can modify password, nick
-  def update(username, options={})
+  #just can modify password, nick, token
+  def update(options={})
     safe_options = [:password, :nick, :token] & options.keys
     unless safe_options.empty?
       options.keys.each do |key|
         if key == :password
           sha_password = User.generate_password options["#{key}".to_sym]
-          User.hmset("imf:user:#{username}", "#{key}", sha_password)
+          User.hmset("imf:user:#{self.username}", "#{key}", sha_password)
         else
-          User.hmset("imf:user:#{username}", "#{key}", options["#{key}".to_sym])
+          User.hmset("imf:user:#{self.username}", "#{key}", options["#{key}".to_sym])
         end
       end
     end
@@ -38,13 +38,8 @@ class User < RedisRecord::Base
     Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{Time.now.to_s}"
   end
 
-  def current_user?(params_username, params_token)
-    token = hmget("accounts:user_lists:#{params_username}", "token")
-    if params_token == token
-      return true
-    else
-      return false
-    end
+  def current_user?(params_token)
+    self.token == params_token
   end
 
   protected

@@ -18,7 +18,7 @@ class SignUp < ::Goliath::API
       password = @pwd_request.password
       user = User.find(username)
       token = user.generate_token
-      user.update(username, :password => password, :token => token)
+      user.update(:password => password, :token => token)
       @response_rusult = pwd_response_build token
     end
 
