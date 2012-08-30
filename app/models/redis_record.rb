@@ -14,7 +14,7 @@ module RedisRecord
       common_get_attrs(attrs, :get)
     end
 
-    def common_get_attrs(attrs, op)
+    def self.common_get_attrs(attrs, op)
       attributes  = If::RedisDistributed.node.send(op, key(attrs))
       attributes.nil? || 0 == attributes.size  ? nil : serialize_from_hash(attributes)
     end
