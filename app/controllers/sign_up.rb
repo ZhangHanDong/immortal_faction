@@ -5,6 +5,13 @@ class SignUp < ::Goliath::API
 
     if sign_up? env
       @sign_up_request = SignUpRequest.new.parse_from(env["rack.input"])
+      env.logger.info "------------>@sign_up_request"
+
+      env.logger.info @sign_up_request.inspect
+      env.logger.info "------------  end "
+
+      env.logger.info "--------------> env['REQUEST_METHOD'] ： #{env['REQUEST_METHOD']}"
+
       username = User.create
       Device.update(:device_type => @sign_up_request.device_type, :device_code => @sign_up_request.mac_address)
       @response_rusult = sign_up_response_build username
