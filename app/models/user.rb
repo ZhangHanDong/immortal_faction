@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < RedisRecord::Base
   
-  attr_accessor :username, :id, :password, :token, :nick
+  attr_accessor :username, :id, :password, :token, :nick, :email
 
   def self.create
     @id = incrby("imf:user:counts", 1)

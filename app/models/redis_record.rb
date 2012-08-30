@@ -3,7 +3,19 @@ module RedisRecord
   class Base
 
     def self.find(attrs)
-      attributes  = If::RedisDistributed.node.hgetall(key(attrs))
+      common_get_attrs(attrs, :hgetall)
+    end
+
+    def self.list(attrs)
+      common_get_attrs(attrs, :lrange)
+    end
+
+    def self.get(attrs)
+      common_get_attrs(attrs, :get)
+    end
+
+    def common_get_attrs(attrs, op)
+      attributes  = If::RedisDistributed.node.send(op, key(attrs))
       attributes.nil? || 0 == attributes.size  ? nil : serialize_from_hash(attributes)
     end
 

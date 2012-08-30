@@ -2,7 +2,6 @@ $: << "../../config" << "./config"
 require 'boot'
 
 class SignUp < ::Goliath::API
-  use Goliath::Rack::Params
   use Goliath::Rack::Validation::RequestMethod, %w(POST GET)
 
   def response(env)
@@ -31,28 +30,24 @@ class SignUp < ::Goliath::API
 
     def password_info?(env); env['REQUEST_METHOD'] == 'POST'; end
 
+    def error_gpb(error_text="", error_code=0)
+      @error_gpb = ErrorGPB.new
+      @error_gpb.error_text = ""
+      @error_gpb.error_code = 0
+      return @error_gpb
+    end
 
     def sign_up_response_build(username)
       @sign_up_response = SignUpResponse.new
       @sign_up_response.username = username
-
-      @error_gpb = ErrorGPB.new
-      @error_gpb.error_text = ""
-      @error_gpb.error_code = 0
-
-      @sign_up_response.error = @error_gpb
-
+      @sign_up_response.error = error_gpb
       return @sign_up_response.serialize_to_string
     end
 
     def pwd_response_build(token)
       @pwd_response = PasswordRequest.new
       @pwd_response.token = token
-
-      @error_gpb = ErrorGPB.new
-      @error_gpb.error_text = ""
-      @error_gpb.error_code = 0
-
+      @pwd_response.error = error_gpb
       return @pwd_response.serialize_to_string
     end
 end
