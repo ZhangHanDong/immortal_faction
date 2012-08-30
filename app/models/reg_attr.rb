@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class RegAttr < RedisRecord::Base
   
   attr_accessor :attribute, :user_id

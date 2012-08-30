@@ -1,5 +1,6 @@
-class RegChoice < ::Goliath::API
-  use Goliath::Rack::Validation::RequestMethod, %w(POST)
+# encoding: UTF-8
+
+class RegChoice < Base
 
   def response(env)
   	@reg_request = RegAttrRequest.new.parse_from(env["rack.input"])
@@ -14,12 +15,6 @@ class RegChoice < ::Goliath::API
   end
 
   protected
-    def error_gpb_info(error_text="", error_code=0)
-      @error_gpb = ErrorGPB.new
-      @error_gpb.error_text = ""
-      @error_gpb.error_code = 0
-      return @error_gpb
-    end
 
     def reg_response_build(error_gpb)
       @reg_response = RegAttrResponse.new

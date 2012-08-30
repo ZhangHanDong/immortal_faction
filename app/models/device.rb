@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Device < RedisRecord::Base
 
   attr_accessor :device_type, :device_code, :user_id

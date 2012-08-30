@@ -1,5 +1,8 @@
 $: << "../../app" << "./app" << "../../lib" << "./lib"
 
+#controllers
+require "controllers/base"
+
 # # models
 require 'models/redis_record'
 require 'models/user'

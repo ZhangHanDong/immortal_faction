@@ -1,5 +1,6 @@
-class Login < ::Goliath::API
-  use Goliath::Rack::Validation::RequestMethod, %w(POST)
+# encoding: UTF-8
+
+class Login < Base
 
   def response(env)
     @login_request = LoginRequest.new.parse_from(env["rack.input"])
@@ -17,12 +18,6 @@ class Login < ::Goliath::API
   end
 
   protected
-    def error_gpb_info(text="", code=0)
-      @error_gpb = ErrorGPB.new
-      @error_gpb.error_text = text
-      @error_gpb.error_code = code
-      return @error_gpb
-    end
 
     def login_response_build(token, error_gpb)
       @login_response = LoginResponse.new

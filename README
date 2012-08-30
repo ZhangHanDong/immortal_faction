@@ -2,6 +2,7 @@
 
   $ ruby config/route.rb sign_up -sv -e development  -p 9000
   $ ruby config/route.rb login -sv -e development  -p 9001
+  #其他url以此类推，端口唯一
 
 # To Run Console
 
