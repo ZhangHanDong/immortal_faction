@@ -1,7 +1,7 @@
 # To Run Server:
 
-  $ ruby app/controllers/sign_up.rb -sv -e development -p 9000
-  $ ruby app/controllers/login.rb -sv -e development  -p 9001
+  $ ruby config/route.rb sign_up -sv -e development  -p 9000
+  $ ruby config/route.rb login -sv -e development  -p 9001
 
 # To Run Console
 

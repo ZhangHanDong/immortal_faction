@@ -1,0 +1,32 @@
+Redis表结构：
+
+    set:
+       # incrby 1 用于计数，生成用户的唯一id
+       imf:user:counts 
+
+    hmset:
+       # 存储用户
+       imf:user:[username]   'id'  user_id  'username' username 'nick' nick_name 'password'  sha_password 'email' email 'token' token
+
+       #存储地域
+       imf:reg:[user_id]  'attribute' [reg_attr] 'user_id' [user_id]
+
+    list:
+       #存储用户对应的device
+       imf:device:[user_id] "[device_type]:[device_code]" 
+
+
+
+Error状态码定义：
+
+  # 无error
+  error_code: 0
+  error_text: ''
+
+  # 密码错误
+  error_code: 402
+  error_text: 'password invalid'
+
+  # token不一致
+  error_code: 401
+  error_text: 'invalid token'
