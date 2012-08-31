@@ -51,7 +51,7 @@ require 'pb/ErrorGPB.pb'
 class SignUpRequest < ::Protobuf::Message
   defined_in __FILE__
   required :string, :mac_address, 1
-  required :string, :divice_type, 2
+  required :string, :device_type, 2
 end
 class SignUpResponse < ::Protobuf::Message
   defined_in __FILE__
