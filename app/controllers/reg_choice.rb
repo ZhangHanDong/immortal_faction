@@ -4,9 +4,9 @@ class RegChoice < Base
 
   def response(env)
   	@reg_request = RegAttrRequest.new.parse_from(env["rack.input"])
-  	user = User.find(@reg_request.username)
-  	if user.token == @reg_request.token
-  	  RegAttr.create(user_id: user.id, attribute: @reg_request.attribute)
+  	user = User.find(@reg_request['username'])
+  	if user.token == @reg_request['token']
+  	  RegAttr.create(user_id: user.id, attribute: @reg_request['attribute'])
   	  @response_rusult = reg_response_build error_gpb_info
   	else
       @response_rusult = reg_response_build error_gpb_info('invalid token', '401')

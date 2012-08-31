@@ -10,7 +10,7 @@ class User < RedisRecord::Base
     @id = incrby("imf:user:counts", 1)
     @username = Bijective.bijective_encode @id
     hmset("imf:user:#{@username}", "id", @id, "username", @username)
-    return @username
+    return User.find @username
   end
 
   #just can modify password, nick, token

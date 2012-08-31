@@ -5,9 +5,9 @@ class SignUp < Base
   def response(env)
       @sign_up_request = SignUpRequest.new.parse_from(env["rack.input"])
 
-      username = User.create
-      Device.update(:device_type => @sign_up_request.device_type, :device_code => @sign_up_request.mac_address)
-      @response_rusult = sign_up_response_build username
+      user = User.create
+      Device.create(:user_id => user.id, :device_type => @sign_up_request['device_type'], :device_code => @sign_up_request.['mac_address'])
+      @response_rusult = sign_up_response_build user.username
 
     [200, {'Content-Type' => 'application/octet-stream'}, @response_rusult ]
   end
