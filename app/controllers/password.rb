@@ -17,7 +17,7 @@ class Password < Base
   protected
 
     def pwd_response_build(token)
-      @pwd_response = PasswordRequest.new
+      @pwd_response = PasswordResponse.new
       @pwd_response.token = token
       @pwd_response.error = error_gpb_info
       return @pwd_response.serialize_to_string

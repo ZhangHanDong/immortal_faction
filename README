@@ -1,6 +1,11 @@
 # To Run Server:
 
-  $ ruby config/run.rb
+  # 启动
+  $ ruby scripts/run.rb
+  #重启
+  $ ruby scripts/restart.rb
+  #停止
+  $ ruby scripts/stop.rb
 
 # To Run Console
 
