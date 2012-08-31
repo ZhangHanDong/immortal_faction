@@ -6,6 +6,8 @@ require "controllers/base"
 # # models
 require 'models/redis_record'
 require 'models/user'
+require 'models/device'
+require 'models/reg_attr'
 
 
 # # lib
