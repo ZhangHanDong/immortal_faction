@@ -6,7 +6,7 @@
 # message SignUpRequest
 # {
 #     required string mac_address = 1;
-#     required string divice_type = 2;
+#     required string device_type = 2;
 # }
 # 
 # message SignUpResponse

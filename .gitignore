@@ -1,4 +1,8 @@
 Gemfile.lock
 logs/*.log
 config/redis.yml
+config/goliath.log
+config/goliath.log_stdout.log
+config/goliath.pid
+
 .DS_Store
