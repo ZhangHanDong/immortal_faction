@@ -10,5 +10,7 @@ when 'password'
   require 'controllers/password'
 when 'reg_choice'
   require 'controllers/reg_choice'
+when 'echo_server'
+  require 'controllers/echo_server'
 end
 

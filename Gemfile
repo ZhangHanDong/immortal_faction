@@ -13,6 +13,8 @@ gem "redis-namespace", "~> 1.2.1"
 
 gem "ruby_protobuf", "~> 0.4.11"
 
+gem "faye-websocket", "~> 0.4.6"
+
 group :app do
   gem "goliath","~> 1.0.0"
 end
