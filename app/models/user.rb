@@ -15,7 +15,8 @@ class User < RedisRecord::Base
 
   def self.all
     users =  keys("imf:user:*").inject([]) do |u, k|
-      u << User.find(k)
+      username = k.split(':').last
+      u << User.find(username)
     end
   end
 
