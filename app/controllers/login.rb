@@ -4,7 +4,7 @@ class Login < Base
 
   def response(env)
     @login_request = LoginRequest.new.parse_from(env["rack.input"])
-    username = @login_request.username
+    username = @login_request.username.downcase
     password = @login_request.password
 
     user = User.find username

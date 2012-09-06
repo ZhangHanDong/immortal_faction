@@ -13,6 +13,12 @@ class User < RedisRecord::Base
     return User.find @username
   end
 
+  def self.all
+    users =  keys("imf:user:*").inject([]) do |u, k|
+      u << User.find(k)
+    end
+  end
+
   #just can modify password, nick, token
   def update(options={})
     safe_options = [:password, :nick, :token] & options.keys
