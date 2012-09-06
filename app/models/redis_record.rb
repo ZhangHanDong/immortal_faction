@@ -25,6 +25,10 @@ module RedisRecord
       If::RedisDistributed.node.hset *args
     end
 
+    def self.keys(*args)
+      If::RedisDistributed.node.keys *args
+    end
+
     def self.hmset(*args)
       If::RedisDistributed.node.hmset *args
     end
