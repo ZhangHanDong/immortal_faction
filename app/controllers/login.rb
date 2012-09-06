@@ -8,12 +8,15 @@ class Login < Base
     password = @login_request.password
 
     user = User.find username
-    if user.auth_login(password)
-      @response_rusult = login_response_build(user.token, error_gpb_info)
+    if user
+      if user.auth_login(password)
+        @response_rusult = login_response_build(user.token, error_gpb_info)
+      else
+        @response_rusult = login_response_build("", error_gpb_info(LOGIC_ERROR_INFOS[:code1][:text], LOGIC_ERROR_INFOS[:code1][:code]))
+      end
     else
-      @response_rusult = login_response_build("", error_gpb_info("password invalid", 402))
+      @response_rusult = login_response_build("", error_gpb_info(LOGIC_ERROR_INFOS[:code3][:text], LOGIC_ERROR_INFOS[:code3][:code]))
     end
-
     [200, {'Content-Type' => 'application/octet-stream'}, @response_rusult ]
   end
 

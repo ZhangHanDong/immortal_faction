@@ -8,7 +8,7 @@ class User < RedisRecord::Base
 
   def self.create
     @id = incrby("imf:user:counts", 1)
-    @username = Bijective.bijective_encode @id
+    @username = rand(36**6).to_s(36)
     hmset("imf:user:#{@username}", "id", @id, "username", @username)
     return User.find @username
   end

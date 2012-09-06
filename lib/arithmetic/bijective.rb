@@ -1,10 +1,11 @@
+# 暂时没用
 # Base62 decode for ALPHABET array.
 # Bijective.bijective_encode 1121 => "5f" 
 
 
 class Bijective
 
-  ALPHABET = "abcdefghijklmnopqrstuvwxyz".split(//)
+  ALPHABET = "abcdefghijklmnopqrstuvwxyz123456789".split(//)
 
   class << self
     def bijective_encode(i)

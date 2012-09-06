@@ -9,7 +9,7 @@ class RegChoice < Base
   	  RegAttr.create(user_id: user.id, attribute: @reg_request.attribute)
   	  @response_rusult = reg_response_build error_gpb_info
   	else
-      @response_rusult = reg_response_build error_gpb_info('invalid token', '401')
+      @response_rusult = reg_response_build error_gpb_info(LOGIC_ERROR_INFOS[:code2][:text], LOGIC_ERROR_INFOS[:code2][:code])
   	end
   	[200, {'Content-Type' => 'application/octet-stream'}, @response_rusult]
   end
