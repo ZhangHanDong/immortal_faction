@@ -5,11 +5,13 @@ class Login < Base
   def response(env)
     @login_request = LoginRequest.new.parse_from(env["rack.input"])
     username = @login_request.username.downcase
-    password = @login_request.password
+    password = PasswordHandle.decode(@login_request.password)
+    env.logger.info "--------------> password: #{password}"
 
     user = User.find username
     if user
       if user.auth_login(password)
+        user.update(:token => user.generate_token)
         @response_rusult = login_response_build(user.token, error_gpb_info)
       else
         @response_rusult = login_response_build("", error_gpb_info(LOGIC_ERROR_INFOS[:code1][:text], LOGIC_ERROR_INFOS[:code1][:code]))

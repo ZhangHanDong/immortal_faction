@@ -16,6 +16,7 @@ require 'models/reg_attr'
 require 'evented_distributed'
 require 'redis_distributed'
 require 'arithmetic/bijective'
+require 'arithmetic/password_handle'
 require "pb/ErrorGPB.pb"
 require "pb/LoginGPB.pb"
 require "pb/RegAttrGPB.pb"

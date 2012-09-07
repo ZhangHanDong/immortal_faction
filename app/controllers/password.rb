@@ -5,7 +5,8 @@ class Password < Base
   def response(env)
     @pwd_request = PasswordRequest.new.parse_from(env["rack.input"])
     username = @pwd_request.username
-    password = @pwd_request.password
+    password = PasswordHandle.decode(@pwd_request.password)
+    env.logger.info "--------------> password: #{password}"
     user = User.find(username)
     token = user.generate_token
     user.update(:password => password, :token => token)
