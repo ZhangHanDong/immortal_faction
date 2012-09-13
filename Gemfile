@@ -10,10 +10,13 @@ gem "em-redis"
 gem "redis", "~> 3.0.1", :require => ["redis/connection/synchrony", "redis"]
 gem "redis-namespace", "~> 1.2.1"
 
+gem "faye", "~> 0.8.3"
 
 gem "ruby_protobuf", "~> 0.4.11"
+gem "thor", "~> 0.16.0"
+gem 'thin'
 
-gem "faye", "~> 0.8.3"
+
 
 group :app do
   gem "goliath","~> 1.0.0"

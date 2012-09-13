@@ -21,6 +21,7 @@ require "pb/ErrorGPB.pb"
 require "pb/LoginGPB.pb"
 require "pb/RegAttrGPB.pb"
 require "pb/MainDataGPB.pb"
+# require "faye/faye_app"
 
 # constant define
 SALT = "sdfsdfaQEWRWRFSf11342SFWERGSDFSRas2342D"
