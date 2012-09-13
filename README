@@ -25,3 +25,7 @@
   $ redis-server /usr/local/etc/redis.conf
   $ redis-server /usr/local/etc/redis_6377.conf
   $ redis-server /usr/local/etc/redis_6378.conf
+
+#TEST Faye
+  $ rackup lib/faye/faye_app.ru -s thin -E production
+  $ curl http://localhost:9292/faye -d 'message={"channel":"/faye", "data":"hello"}'
