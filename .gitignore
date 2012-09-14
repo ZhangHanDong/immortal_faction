@@ -1,5 +1,6 @@
 Gemfile.lock
 logs/*.log
+logs/goliath.pid
 config/redis.yml
 config/goliath.log
 config/goliath.log_stdout.log

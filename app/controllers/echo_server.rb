@@ -1,5 +1,11 @@
 class EchoServer < Goliath::API
   def response(env)
-    FayeApp.call(env)
+    ws = Faye::WebSocket.new(env)
+
+    ws.onmessage = lambda do |event|
+      ws.send(event.data)
+    end
+
+    ws.rack_response
   end
 end
