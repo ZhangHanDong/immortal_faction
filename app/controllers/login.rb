@@ -6,7 +6,7 @@ class Login < Base
     @login_request = LoginRequest.new.parse_from(env["rack.input"])
     username = @login_request.username.downcase
     password = PasswordHandle.decode(@login_request.password)
-    env.logger.info "--------------> password: #{password}"
+    # env.logger.info "--------------> password: #{password}"
 
     user = User.find username
     if user
