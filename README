@@ -29,3 +29,6 @@
 #TEST Faye
   $ rackup lib/faye/faye_app.ru -s thin -E production
   $ curl http://localhost:9292/faye -d 'message={"channel":"/faye", "data":"hello"}'
+
+#启动本地haproxy
+  $  sudo /usr/local/sbin/haproxy -f /usr/local/Cellar/haproxy/1.4.21/haproxy.cfg
