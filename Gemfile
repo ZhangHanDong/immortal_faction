@@ -14,6 +14,7 @@ gem "faye", "~> 0.8.3"
 
 gem "ruby_protobuf", "~> 0.4.11"
 gem "thor", "~> 0.16.0"
+gem "thin"
 
 
 group :app do

@@ -9,7 +9,7 @@ puts "------> starting redis"
 puts "-------> redis prepared!"
 
 puts "---------> starting goliath server "
-servers = {:sign_up => 9000, :password => 9001, :login => 9002, :reg_choice => 9003, :echo_server => 9004}
+servers = {:sign_up => 9000, :password => 9001, :login => 9002, :reg_choice => 9003}
 servers.each do |k, v|
   %x| touch ./logs/imf_#{v}.log_stdout.log|
   %x| chmod 755 ./logs/imf_#{v}.log_stdout.log|
@@ -23,3 +23,7 @@ puts "-----> starting haproxy server..."
 %x| sudo /usr/local/sbin/haproxy -f /usr/local/Cellar/haproxy/1.4.21/haproxy.cfg |
 
 puts "-------> ok, haproxy prepared for you!"
+
+puts "----------> run faye server..."
+%x| rackup lib/faye/faye_app.ru -s thin -E production -D -p 9004|
+puts  "-------> faye server prepared for you!"

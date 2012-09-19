@@ -10,7 +10,11 @@ puts "------ killde haproxy server ..."
 ha_pids = %x[ps aux|grep haproxy|grep -v grep|awk '{print $2}'|xargs].chomp
 %x|sudo kill -9 #{ha_pids.to_i}|
 
-puts "------> starting goliath and haproxy server ..."
+puts "------ killde faye server ..."
+faye_pids = %x[ps aux|grep faye|grep -v grep|awk '{print $2}'|xargs].chomp
+%x|sudo kill -9 #{faye_pids.to_i}|
+
+puts "------> starting server ..."
 %x[ ruby scripts/local_run.rb]
 
 puts "--------> restared success!"
